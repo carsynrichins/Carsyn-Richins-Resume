@@ -1,0 +1,129 @@
+p {
+    font-weight: bold;
+    font-style: italic;
+    font-size: 14px;
+    text-align: center;
+    width: 600px; /* Adjust this value as needed */
+    display: inline-block;
+}
+
+
+#top{
+    text-decoration: underline;
+}
+
+
+.emphasizedText{
+    font-style: italic;
+    color: #22c580;
+}
+
+
+body {
+    background-color: whitesmoke;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    text-align: center;
+    border: 5px solid black;
+    margin: 20px auto; /* Centers the body and adds margin */
+    padding: 10px;
+    max-width: 600px; /* Sets the maximum width */
+    width: 95%; /* Adjusts width to screen size, but respects max-width */
+}
+
+
+.centered-list{
+    padding-left: outside;
+    margin: 0 auto;
+    display: table;
+    text-align: left;
+}
+
+ul, ol {
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1.2em;
+    max-width: 500px;
+    text-align: left;
+    line-height: 1.7;
+  }
+  
+  li {
+    margin-bottom: 0.5em;
+  }
+
+  .center-img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;
+    max-width: 100%;
+    height: auto;
+  }
+
+  .fixed-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #006073;
+    color: white;
+    padding: 15px 0 10px 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    z-index: 1000;
+    text-align: center;
+}
+
+.fixed-header h1 {
+    margin: 0 0 5px 0;
+    font-size: 1.6em;
+    letter-spacing: 1px;
+}
+.fixed-header nav {
+    margin-top: 5px;
+}
+body {
+    padding-top: 70px;
+}
+
+.fixed-header a {
+    color: white;
+    text-decoration: none;
+    margin: 0 18px;
+    font-weight: bold;
+    font-size: 1.1em;
+    transition: color 0.2s;
+    border-bottom: 2px solid transparent;
+    padding-bottom: 2px;
+}
+
+.fixed-header a:hover {
+    color: #155f40;
+    border-bottom: 2px solid #fff;
+}
+
+.tableau-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+  }
+  
+  .tableauPlaceholder {
+    width: 90%;
+    max-width: 800px;
+    aspect-ratio: 4 / 3.5;
+    position: relative;
+    overflow: hidden;
+    transform: scale(0.95);
+    transform-origin: top;
+  }
+  
+  .tableauPlaceholder object {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: scale(0.55); 
+    transform-origin: top left;
+    width: 100%; 
+    height: 100%;
+  }
