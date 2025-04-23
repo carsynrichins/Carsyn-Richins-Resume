@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shrek Clicker</title>
+  <div id="page-links">
+    <a href="index.html" class="fun-link">↩ Main Resume</a>
+    <a href="scratch.html" class="fun-link">🧪 Scratch Page</a>
+    <a href="#" class="fun-link" onclick="restartGame()">🔄 Restart Game</a>
+  </div>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Chewy&display=swap');
+
+    #page-links {
+  position: absolute;
+  top: 70px; /* gives space below the click counter */
+  right: 20px;
+  text-align: right;
+}
+
+.fun-link {
+  display: block;
+  margin-bottom: 6px;
+  font-family: 'Chewy', cursive;
+  font-size: 18px;
+  color: #228B22;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.fun-link:hover {
+  color: #006400;
+  text-shadow: 1px 1px 2px #aaffaa;
+  transform: scale(1.05);
+}
+
+    body {
+      font-family: sans-serif;
+      background-color: #e0ffe0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      overflow: hidden;
+      margin: 0;
+    }
+    h1 {
+      font-size: 48px;
+      margin-bottom: 10px;
+    }
+    .title-strike {
+      font-size: 48px;
+      font-weight: bold;
+      z-index: 10;
+      transition: all 0.5s ease;
+    }
+    .title-strike.start {
+      position: absolute;
+      top: 5px;
+      left: 20px;
+    }
+    .title-strike del {
+      color: #444;
+    }
+    .title-strike span {
+      font-family: 'Chewy', cursive;
+      color: green;
+      margin-left: 10px;
+    }
+    #character-select {
+      margin-bottom: 20px;
+    }
+    #clicker-button {
+      width: 120px;
+      height: 120px;
+      font-size: 18px;
+      border: 4px solid silver;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: transform 0.1s ease;
+      background: radial-gradient(circle at top left, #ff4d4d, #cc0000);
+      color: white;
+      position: relative;
+      z-index: 2;
+      box-shadow: inset -4px -4px 10px rgba(255,255,255,0.4), inset 4px 4px 10px rgba(0,0,0,0.2);
+    }
+    #clicker-button:active {
+      transform: scale(0.95);
+    }
+    #click-count {
+      margin-top: 20px;
+      font-size: 20px;
+      position: absolute;
+      top: 5px;
+      right: 20px;
+      transition: top 0.5s ease, right 0.5s ease;
+    }
+    .float-image {
+      position: absolute;
+      width: 80px;
+      pointer-events: none;
+      animation: floatUp 2s ease-out forwards;
+      z-index: 1;
+    }
+    @keyframes floatUp {
+      0% { opacity: 0; transform: translateY(20px) scale(0.8); }
+      30% { opacity: 1; transform: translateY(-20px) scale(1); }
+      100% { opacity: 0; transform: translateY(-200px) scale(1.3); }
+    }
+    .lord-farquaad {
+      position: absolute;
+      top: 50%;
+      left: -150px;
+      width: 400px;
+      animation: farquaadSpin 4s linear forwards;
+      z-index: 3;
+    }
+    @keyframes farquaadSpin {
+      0% { transform: translateX(0) rotate(0deg); }
+      100% { transform: translateX(160vw) rotate(1440deg); }
+    }
+  </style>
+</head>
+<body>
+  <h1 class="title-strike" id="game-title">
+    <span id="main-title">
+      <del style="font-family: sans-serif;">Cookie</del>
+      <span>Shrek</span>
+    </span>
+    <span id="clicker-title" style="display: inline;"> Clicker</span>
+  </h1>
+
+  <div id="character-select">
+    <label for="characters">Choose your clicker character: </label>
+    <select id="characters">
+      <option value="shrek">Shrek</option>
+      <option value="donkey">Donkey</option>
+      <option value="pussinboots">Puss In Boots</option>
+    </select>
+    <button onclick="startGame()">Start</button>
+  </div>
+
+  <button id="clicker-button" style="display: none;"></button>
+  <div id="click-count">Clicks: 0</div>
+
+  <script>
+    const images = {
+      shrek: './assets/img/shrek.png',
+      donkey: './assets/img/donkey.png',
+      pussinboots: './assets/img/pussinboots.png',
+      farquaad: './assets/img/group.png'
+    };
+
+    let character = '';
+    let count = 0;
+
+    function restartGame() {
+  count = 0;
+  document.getElementById('click-count').innerText = 'Clicks: 0';
+  document.getElementById('clicker-button').style.display = 'none';
+  document.getElementById('character-select').style.display = 'block';
+
+  const title = document.getElementById('game-title');
+  title.classList.remove('start');
+
+  // 👉 Put "Clicker" back on the same line
+  document.getElementById('clicker-title').style.display = 'inline';
+}
+
+function startGame() {
+  const select = document.getElementById('characters');
+  character = select.value;
+  document.getElementById('character-select').style.display = 'none';
+  const btn = document.getElementById('clicker-button');
+  btn.innerText = character.charAt(0).toUpperCase() + character.slice(1);
+  btn.style.display = 'inline-block';
+
+  const title = document.getElementById('game-title');
+  title.classList.add('start');
+
+  const counter = document.getElementById('click-count');
+  counter.style.top = '5px';
+  counter.style.right = '20px';
+
+  // 👉 Move "Clicker" to new line
+  document.getElementById('clicker-title').style.display = 'block';
+}
+
+    document.getElementById('clicker-button').addEventListener('click', () => {
+      count++;
+      document.getElementById('click-count').innerText = `Clicks: ${count}`;
+
+      const btn = document.getElementById('clicker-button');
+      const rect = btn.getBoundingClientRect();
+      const floatImg = document.createElement('img');
+      floatImg.src = images[character];
+      floatImg.className = 'float-image';
+      floatImg.style.left = `${rect.left + rect.width / 2 - 40}px`;
+      floatImg.style.top = `${rect.top + rect.height / 2 - 40}px`;
+      document.body.appendChild(floatImg);
+
+      setTimeout(() => floatImg.remove(), 2000);
+
+      if (count % 25 === 0) {
+        const farquaad = document.createElement('img');
+        farquaad.src = images.farquaad;
+        farquaad.className = 'lord-farquaad';
+        document.body.appendChild(farquaad);
+        setTimeout(() => farquaad.remove(), 4000);
+      }
+    });
+  </script>
+</body>
+</html>
